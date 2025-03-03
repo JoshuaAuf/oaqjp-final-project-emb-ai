@@ -16,7 +16,7 @@ def sent_detector():
     
     dominant_emotion = response['dominant_emotion']
 
-    if label is None:
+    if dominant_emotion is None:
         return "Invalid input! Try again."
     else:
         return f"For the given statement, the system response is 'anger': {response['anger']}, 'disgust': {response['disgust']}, 'fear': {response['fear']}, 'joy': {response['joy']} and 'sadness': {response['sadness']}. The dominant emotion is {response['dominant_emotion']}."
