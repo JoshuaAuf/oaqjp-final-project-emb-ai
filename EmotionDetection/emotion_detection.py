@@ -11,14 +11,27 @@ def emotion_detector(text_to_analyse):  # Define a function named sentiment_anal
     emotion_predictions = data["emotionPredictions"] # Extract the emotion predictions
     emotion_scores = emotion_predictions[0]["emotion"] # Extract the emotion scores
     dominant_emotion = max(emotion_scores, key=emotion_scores.get) # Determine the dominant emotion
-    # Create the output dictionary
-    output = {
-        "anger": emotion_scores["anger"],
-        "disgust": emotion_scores["disgust"],
-        "fear": emotion_scores["fear"],
-        "joy": emotion_scores["joy"],
-        "sadness": emotion_scores["sadness"],
-        "dominant_emotion": dominant_emotion
-    }
+    if response.status_code == 200:
+        # Create the output dictionary
+        output = {
+            "anger": emotion_scores["anger"],
+            "disgust": emotion_scores["disgust"],
+            "fear": emotion_scores["fear"],
+            "joy": emotion_scores["joy"],
+            "sadness": emotion_scores["sadness"],
+            "dominant_emotion": dominant_emotion
+        }
+    elif response.status_code == 400:
+        dominant_emotion = None
+        output = {
+            "anger": None,
+            "disgust": None,
+            "fear": None,
+            "joy": None,
+            "sadness": None,
+            "dominant_emotion": dominant_emotion
+        }
+    elif response.status_code == 500:
+        output = None
 
-    return output  
+    return output 
