@@ -14,12 +14,7 @@ def sent_detector():
     # Pass the text to the sentiment_analyzer function and store the response
     response = emotion_detector(text_to_analyze)
     
-    dominant_emotion = response['dominant_emotion']
-
-    if dominant_emotion is None:
-        return "Invalid input! Try again."
-    else:
-        return f"For the given statement, the system response is 'anger': {response['anger']}, 'disgust': {response['disgust']}, 'fear': {response['fear']}, 'joy': {response['joy']} and 'sadness': {response['sadness']}. The dominant emotion is {response['dominant_emotion']}."
+    return response
 
 @app.route("/")
 def render_index_page():
